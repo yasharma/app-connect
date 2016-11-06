@@ -1,0 +1,45 @@
+<div class="col-md-6 col-md-offset-3">
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<h3 class="panel-title">App Connect Registration</h3>
+		</div>
+		<div class="panel-body">
+			<form name="registrationForm" class="form-horizontal" ng-submit="register(registrationForm.$valid)" novalidate>
+				<div class="form-group" ng-class="{'has-error': registrationForm.email.$touched && registrationForm.email.$invalid || registrationForm.email.$invalid && registrationForm.$submitted }">
+					<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+					<div class="col-sm-10">
+						<input type="email" name="email" class="form-control" id="inputEmail3" placeholder="Email"
+						ng-model="user.email"
+						ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/"
+						ng-required="true">
+
+						<div class="help-block" ng-messages="registrationForm.email.$error" class="error_tag"  ng-show="registrationForm.email.$touched || registrationForm.$submitted">
+                            <p class="text-danger" ng-message="required">Email is required</p>
+                            <p class="text-danger" ng-message="email">Your email address is invalid</p>
+                            <p class="text-danger" ng-message="pattern">Your email address is invalid</p>
+                        </div>
+					</div>
+				</div>
+				<div class="form-group" ng-class="{'has-error': registrationForm.password.$touched && registrationForm.password.$invalid || registrationForm.password.$invalid && registrationForm.$submitted }">
+					<label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+					<div class="col-sm-10">
+						<input type="password" name="password" class="form-control" id="inputPassword3" placeholder="Password"
+						ng-model="user.password"
+						ng-minlength="6"
+						ng-required="true">
+
+						<div class="help-block" ng-messages="registrationForm.password.$error" class="error_tag"  ng-show="registrationForm.password.$touched || registrationForm.$submitted">
+                            <p class="text-danger" ng-message="required">Password is required</p>
+                            <p class="text-danger" ng-message="minlength">Password must atleast 6 character long</p>
+                        </div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="submit" class="btn btn-primary">Register</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,5 @@
+body { padding-top: 70px; }
+.panel, 
+.panel-heading, 
+input[type="email"],input[type="text"], input[type="submit"], input[type="password"],
+button[type="button"], button[type="submit"] { border-radius: 0; }
