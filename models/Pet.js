@@ -3,13 +3,7 @@
 var mongoose 		= require('mongoose'),
 	path 			= require('path'),
   	config 	 		= require(path.resolve('./config/env/dev')),
-	Schema 			= mongoose.Schema;
-
-/* Fix mongoose mpromise deprecation warning */
-mongoose.Promise = global.Promise;
-
-/* connection with mongoDB */
-mongoose.createConnection(config.Pets.URL);		
+	Schema 			= mongoose.Schema;	
 	
 var PetSchema = new Schema({
 	pet: {

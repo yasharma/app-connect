@@ -53,3 +53,20 @@ exports.register = function(req, res, next) {
 		}
 	});
 };
+
+/* update user data */
+exports.update = function(req, res, next){
+	User.findByIdAndUpdate(req.params.id,
+		{  $addToSet: {purchased:req.body.petId} },
+		{ new: true, runValidators: true, setDefaultsOnInsert: true, fields: {password: 0} },
+		function(err, user){
+			if(err){
+				next(err);
+			}
+			res.json({
+				success: true,
+				message: 'Selection has updated successfully',
+				user: user
+			});
+		});
+};

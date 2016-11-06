@@ -12,6 +12,7 @@ var express 	= require('express'),
 */
 router.post('/login', usersCtrl.login);
 router.post('/register', usersCtrl.register);
+router.put('/update/:id', usersCtrl.update);
 router.get('/pets', petsCtrl.getAllPets);
 
 module.exports = router;

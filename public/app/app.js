@@ -26,7 +26,7 @@ angular.module('bharatConnect', [
 		access: {requiredLogin: false}
 	})
 	.when('/shop', {
-		controller: 'authCtrl',
+		controller: 'shopCtrl',
 		templateUrl: 'app/views/shop.html',
 		access: {requiredLogin: true}
 	})

@@ -10,6 +10,8 @@ var express 	= require('express'),
 	routes 		= require(path.resolve('./config/routes')),
 	config 	= require(path.resolve('./config/env/dev'));
 
+
+
 /* make public directory accessbile thrugh express static middleware */
 app.use(express.static(path.resolve('./public')));
 

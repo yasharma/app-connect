@@ -1,11 +1,11 @@
 <div class="row">
-	<div class="col-sm-6 col-md-3">
+	<div class="col-sm-6 col-md-3" ng-repeat="pet in pets">
 		<div class="thumbnail">
-		<img src="images/noimage.jpg" alt="{{name}}">
+		<img src="images/noimage.jpg" alt="{{pet.name}}">
 			<div class="caption">
-				<h3>{{name}}</h3>
-				<p>Cost - {{cost}}</p>
-				<p><a href="#" class="btn btn-primary" role="button">Buy</a>
+				<h3>{{pet.name | uppercase}}</h3>
+				<p>Cost - {{pet.cost}}</p>
+				<p><a href ng-click="buy($index)" class="btn btn-primary" role="button">Buy</a>
 				</div>
 			</div>
 		</div>

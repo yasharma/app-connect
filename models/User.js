@@ -11,7 +11,9 @@ var mongoose 		= require('mongoose'),
 mongoose.Promise = global.Promise;
 
 /* connection with mongoDB */
-mongoose.createConnection(config.Users.URL);	
+mongoose.connect(config.Users.URL);
+mongoose.set('debug', true);
+
 	
 var UserSchema 	= new Schema({
 	email: {
@@ -36,6 +38,10 @@ var UserSchema 	= new Schema({
 		type: Boolean,
 		default: true // user is active by default
 	},
+	purchased: [{
+		type: mongoose.Schema.Types.ObjectId,
+        ref: 'Pet'
+	}]
 });
 
 /* Mongoose beforeSave Hook : To hash a password */

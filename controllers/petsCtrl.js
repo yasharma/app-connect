@@ -9,6 +9,6 @@ exports.getAllPets = function(req, res, next) {
 		if(err){
 			next(err);
 		}
-		console.log(result);
+		res.json({records: result});
 	});
 };	
