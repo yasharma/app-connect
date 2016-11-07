@@ -1,12 +1,27 @@
 <div class="row">
-	<div class="col-sm-6 col-md-3" ng-repeat="pet in pets">
-		<div class="thumbnail">
-		<img src="images/noimage.jpg" alt="{{pet.name}}">
-			<div class="caption">
-				<h3>{{pet.name | uppercase}}</h3>
-				<p>Cost - {{pet.cost}}</p>
-				<p><a href ng-click="buy($index)" class="btn btn-primary" role="button">Buy</a>
+	<div class="{{user.purchased.length > 0 ? 'col-md-9':'col-md-12'}}">
+		<div class="page-header">
+			<h3>Shop For Items</h3>
+		</div>
+		<div class="col-sm-6 col-md-3" ng-repeat="pet in pets">
+			<div class="thumbnail">
+				<img src="images/noimage.jpg" alt="{{pet.name}}">
+				<div class="caption">
+					<h3>{{pet.name | uppercase}}</h3>
+					<p>Cost - {{pet.cost}}</p>
+					<p><a href ng-click="buy($index)" class="btn btn-primary" role="button">Buy</a>
 				</div>
 			</div>
 		</div>
 	</div>
+
+	<!--User Purchased Items-->
+	<div class="col-md-3" ng-if="user.purchased.length > 0">
+		<div class="page-header">
+			<h3>Previous Purchased</h3>
+		</div>
+		<ul class="list-group">
+			<li ng-repeat="item in user.purchased" class="list-group-item">{{item.pet | uppercase}} - Cost( {{item.cost}} )</li>
+		</ul>
+	</div>
+</div>

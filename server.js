@@ -8,7 +8,8 @@ var express 	= require('express'),
 	morgan 		= require('morgan'),
 	path 		= require('path'),
 	routes 		= require(path.resolve('./config/routes')),
-	config 	= require(path.resolve('./config/env/dev'));
+	Pet 		= require(path.resolve('./models/Pet')),
+	config 		= require(path.resolve('./config/env/dev'));
 
 
 
@@ -32,8 +33,7 @@ app.use((err, req, res, next) => {
 				message: err.message || 'Some error occurred, see log for more info!!',
 				success: false
 			}	
-		});
-		logger.log('error', err);		
+		});		
 	}
 	next();
 });	
@@ -41,7 +41,13 @@ app.use((err, req, res, next) => {
 /*
 * Start the node server using node 'http' package
 */
-http.listen(config.server.PORT, () => {
+http.listen(config.server.PORT, function () {
+	Pet.dump(function(err, result){
+		if(err){
+			console.log(err);
+		}
+		console.log('Pets are inserted in DB.');
+	});
     console.log(`Listening on server port:${config.server.PORT}`);
 });
 

@@ -4,18 +4,10 @@ var mongoose 		= require('mongoose'),
 	path 			= require('path'),
 	crypto 			= require('crypto'),
   	config 	 		= require(path.resolve('./config/env/dev')),
-  	beautifyUnique 	= require('mongoose-beautiful-unique-validation'),
-	Schema 			= mongoose.Schema;
+	db 				= require(path.resolve('./config/database')),  
+  	beautifyUnique 	= require('mongoose-beautiful-unique-validation');
 
-/* Fix mongoose mpromise deprecation warning */
-mongoose.Promise = global.Promise;
-
-/* connection with mongoDB */
-mongoose.connect(config.Users.URL);
-mongoose.set('debug', true);
-
-	
-var UserSchema 	= new Schema({
+var UserSchema 	= new mongoose.Schema({
 	email: {
 		type: String,
 		lowercase: true,
@@ -73,4 +65,4 @@ UserSchema.methods.comparePassword = function(salt, password){
 };
 
 UserSchema.plugin(beautifyUnique);
-module.exports = mongoose.model('User', UserSchema);
+module.exports = db.User.model('User', UserSchema);

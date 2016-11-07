@@ -16,9 +16,12 @@ angular.module('app.controllers')
 
 		/* extract the user id from localstorage */
 		user = localStorageService.get('user');
-
-		RestSvr.put('/update/', user._id, {petId: selectedPet._id}, function(result){
-			console.log(result);
+		RestSvr.put('/update/', user._id, {petId: selectedPet._id}).then(function(result){
+			if(result.errors){
+				toaster.pop({type: 'error', title: "Error", body:result.errors.message, showCloseButton:true});
+			} else {
+				toaster.pop({type: 'success', title: "Success", body:'Item has selected ', showCloseButton:true});
+			}
 		});
 	};
 

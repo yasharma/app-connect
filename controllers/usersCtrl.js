@@ -1,11 +1,14 @@
 'use strict';
-var path = require('path'),
-	config = require(path.resolve('./config/env/dev')),
-	User = require(path.resolve('./models/User'));
+var path 	= require('path'),
+	config 	= require(path.resolve('./config/env/dev')),
+	Pet 	= require(path.resolve('./models/Pet')),
+	User 	= require(path.resolve('./models/User'));
 
 /* user login function */
 exports.login = function(req,res) {	
-	User.findOne({ email: req.body.email }, function(err, user, next) {
+	User.findOne({ email: req.body.email })
+		.populate({ path: 'purchased', model: Pet })
+		.exec(function(err, user, next) {
 		if(err){
 			next(err);                                              
 		} else {
@@ -57,7 +60,7 @@ exports.register = function(req, res, next) {
 /* update user data */
 exports.update = function(req, res, next){
 	User.findByIdAndUpdate(req.params.id,
-		{  $addToSet: {purchased:req.body.petId} },
+		{  $push: {purchased:req.body.petId} },
 		{ new: true, runValidators: true, setDefaultsOnInsert: true, fields: {password: 0} },
 		function(err, user){
 			if(err){
