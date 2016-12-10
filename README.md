@@ -1,5 +1,5 @@
 # app-connect
-MEAN APP
+MEAN APP (This app can connect with more than one database)
 
 ## To Run APP
 ```bash
